@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace TopDownCharacterController.Runtime.Controllers.Movement
 {
+    /// <summary>
+    /// Abstract base for all movement implementations. Provides shared time-factor helpers and a smoothing algorithm resolver
+    /// so subclasses avoid duplicating interpolation logic.
+    /// </summary>
     public abstract class
         MovementController : Controller<TopDownCharacterModel, TopDownCharacterSettings, TopDownCharacterView>
     {

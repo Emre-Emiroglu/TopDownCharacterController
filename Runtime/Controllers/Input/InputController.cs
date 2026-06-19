@@ -9,6 +9,10 @@ using UnityEngine.InputSystem;
 
 namespace TopDownCharacterController.Runtime.Controllers.Input
 {
+    /// <summary>
+    /// Abstract base for all platform-specific input handlers. Manages <c>InputAction</c> lifecycle and caches
+    /// the current move and look vectors each frame.
+    /// </summary>
     public abstract class
         InputController : Controller<TopDownCharacterModel, TopDownCharacterSettings, TopDownCharacterView>
     {
@@ -18,11 +22,20 @@ namespace TopDownCharacterController.Runtime.Controllers.Input
         #endregion
 
         #region Properties
+        /// <summary>The movement vector polled from <c>MoveAction</c> on the last <c>OnUpdate</c> tick.</summary>
         public Vector2 MoveInput { get; private set; }
+        /// <summary>The look/aim vector polled from <c>LookAction</c> on the last <c>OnUpdate</c> tick.</summary>
         public Vector2 LookInput { get; private set; }
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Initializes the controller with pre-built input actions that subclasses may override with platform-specific bindings.
+        /// </summary>
+        /// <param name="model">Shared runtime state of the character.</param>
+        /// <param name="view">MonoBehaviour providing component references.</param>
+        /// <param name="moveAction">Fallback move <c>InputAction</c> supplied by the settings asset.</param>
+        /// <param name="lookAction">Fallback look <c>InputAction</c> supplied by the settings asset.</param>
         protected InputController(TopDownCharacterModel model, TopDownCharacterView view, InputAction moveAction,
             InputAction lookAction) : base(model, view)
         {
@@ -32,6 +45,10 @@ namespace TopDownCharacterController.Runtime.Controllers.Input
         #endregion
 
         #region Executes
+        /// <summary>
+        /// Dispatches the requested lifecycle operation on the managed input actions.
+        /// </summary>
+        /// <param name="parameters">Single-element array containing an <see cref="InputStateType"/> value.</param>
         public override void Execute(params object[] parameters)
         {
             if (parameters[0] is not InputStateType inputState)

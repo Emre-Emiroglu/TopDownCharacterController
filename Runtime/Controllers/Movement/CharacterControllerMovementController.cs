@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace TopDownCharacterController.Runtime.Controllers.Movement
 {
+    /// <summary>
+    /// Moves the character using Unity's <see cref="CharacterController"/> component with optional manual gravity simulation.
+    /// Requires a CharacterController assigned on <see cref="TopDownCharacterView"/>; exits silently if it is null.
+    /// </summary>
     public sealed class CharacterControllerMovementController : MovementController
     {
         #region Fields
@@ -15,11 +19,21 @@ namespace TopDownCharacterController.Runtime.Controllers.Movement
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Initializes the controller with the shared model and view.
+        /// </summary>
+        /// <param name="model">Shared runtime state providing move input and settings.</param>
+        /// <param name="view">MonoBehaviour whose CharacterController is driven each frame.</param>
         public CharacterControllerMovementController(TopDownCharacterModel model, TopDownCharacterView view) : base(
             model, view) { }
         #endregion
 
         #region Executes
+        /// <summary>
+        /// Applies smoothed horizontal movement and, when using <c>Move</c>, accumulates vertical velocity for gravity.
+        /// No-ops silently if <see cref="TopDownCharacterView.CharacterController"/> is null.
+        /// </summary>
+        /// <param name="parameters">Not used; reserved for base-class contract compatibility.</param>
         public override void Execute(params object[] parameters)
         {
             CharacterController characterController = View.CharacterController;

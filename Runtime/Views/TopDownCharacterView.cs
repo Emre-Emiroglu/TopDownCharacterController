@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TopDownCharacterController.Runtime.Views
 {
+    /// <summary>
+    /// MonoBehaviour view for the top-down character. Exposes optional physics components to the MVMC controller layer.
+    /// </summary>
     public class TopDownCharacterView : View
     {
         #region Fields
@@ -13,7 +16,9 @@ namespace TopDownCharacterController.Runtime.Views
         #endregion
 
         #region Getters
+        /// <summary>Optional Rigidbody used by <c>PhysicMovementController</c>. Null when <c>MovementType</c> is not <c>Physic</c>.</summary>
         [CanBeNull] public Rigidbody Rb => rb;
+        /// <summary>Optional CharacterController used by <c>CharacterControllerMovementController</c>. Null when <c>MovementType</c> is not <c>CharacterController</c>.</summary>
         [CanBeNull] public CharacterController CharacterController => characterController;
         #endregion
 

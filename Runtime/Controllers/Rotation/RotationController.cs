@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace TopDownCharacterController.Runtime.Controllers.Rotation
 {
+    /// <summary>
+    /// Abstract base for all rotation implementations. Provides a time-factor helper and a shared quaternion
+    /// interpolation method so subclasses avoid duplicating per-algorithm switch logic.
+    /// </summary>
     public abstract class
         RotationController : Controller<TopDownCharacterModel, TopDownCharacterSettings, TopDownCharacterView>
     {

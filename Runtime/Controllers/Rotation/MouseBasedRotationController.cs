@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace TopDownCharacterController.Runtime.Controllers.Rotation
 {
+    /// <summary>
+    /// Rotates the character to face the mouse cursor by projecting a screen-space ray onto the ground plane.
+    /// Requires a camera reference to perform the <c>ScreenPointToRay</c> conversion.
+    /// </summary>
     public sealed class MouseBasedRotationController : RotationController
     {
         #region ReadonlyFields
@@ -12,11 +16,22 @@ namespace TopDownCharacterController.Runtime.Controllers.Rotation
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Initializes the controller and stores the camera used for screen-to-world raycasting.
+        /// </summary>
+        /// <param name="model">Shared runtime state providing look input (mouse screen position) and settings.</param>
+        /// <param name="view">MonoBehaviour whose Transform rotation is updated each frame.</param>
+        /// <param name="gameCamera">Camera used to convert screen coordinates to a world-space ray.</param>
         public MouseBasedRotationController(TopDownCharacterModel model, TopDownCharacterView view, Camera gameCamera) :
             base(model, view) => _gameCamera = gameCamera;
         #endregion
 
         #region Executes
+        /// <summary>
+        /// Raycasts from the mouse position to the ground plane and rotates the character toward the hit point.
+        /// Exits early if the ray misses the plane or the resulting direction is below <c>MinimumRotationMagnitude</c>.
+        /// </summary>
+        /// <param name="parameters">Not used; reserved for base-class contract compatibility.</param>
         public override void Execute(params object[] parameters)
         {
             TopDownCharacterSettings settings = Model.Settings;

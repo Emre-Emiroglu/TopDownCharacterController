@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace TopDownCharacterController.Runtime.Controllers.Movement
 {
+    /// <summary>
+    /// Moves the character by applying force or velocity to a <see cref="Rigidbody"/> component each physics step.
+    /// Requires a Rigidbody assigned on <see cref="TopDownCharacterView"/>; exits silently if it is null.
+    /// </summary>
     public sealed class PhysicMovementController : MovementController
     {
         #region Fields
@@ -14,10 +18,20 @@ namespace TopDownCharacterController.Runtime.Controllers.Movement
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Initializes the controller with the shared model and view.
+        /// </summary>
+        /// <param name="model">Shared runtime state providing move input and settings.</param>
+        /// <param name="view">MonoBehaviour whose Rigidbody receives force or velocity each step.</param>
         public PhysicMovementController(TopDownCharacterModel model, TopDownCharacterView view) : base(model, view) { }
         #endregion
 
         #region Executes
+        /// <summary>
+        /// Applies smoothed force or velocity to the Rigidbody according to the configured <see cref="PhysicMovementMethod"/>.
+        /// No-ops silently if <see cref="TopDownCharacterView.Rb"/> is null.
+        /// </summary>
+        /// <param name="parameters">Not used; reserved for base-class contract compatibility.</param>
         public override void Execute(params object[] parameters)
         {
             Rigidbody rb = View.Rb;

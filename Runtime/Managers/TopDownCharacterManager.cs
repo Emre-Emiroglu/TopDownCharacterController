@@ -11,6 +11,9 @@ using UnityEngine.InputSystem;
 
 namespace TopDownCharacterController.Runtime.Managers
 {
+    /// <summary>
+    /// MonoBehaviour composition root. Constructs the full MVMC stack from inspector-assigned settings and drives it each frame.
+    /// </summary>
     public sealed class TopDownCharacterManager : MonoBehaviour
     {
         #region Fields
