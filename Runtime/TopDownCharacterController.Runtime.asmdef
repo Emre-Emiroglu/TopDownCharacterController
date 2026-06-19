@@ -1,7 +1,10 @@
 {
     "name": "TopDownCharacterController.Runtime",
     "rootNamespace": "TopDownCharacterController.Runtime",
-    "references": [],
+    "references": [
+        "GUID:15bff83618aabf84295cbe327916f6a6",
+        "Unity.InputSystem"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
