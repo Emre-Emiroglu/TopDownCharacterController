@@ -2,7 +2,7 @@
   "name": "com.emreemiroglu.topdowncharactercontroller",
   "version": "1.0.0",
   "displayName": "TopDownCharacterController",
-  "description": "Modular, cross-platform top-down character controller built on MVMC. Supports Transform / Rigidbody3D / Rigidbody2D / CharacterController movement, DirectionBased / MouseBased / JoystickDelta rotation, and PC / Console / Mobile input via the Unity Input System.",
+  "description": "Modular, cross-platform top-down character controller built on MVMC. Supports Transform / Rigidbody / CharacterController movement, DirectionBased / MouseBased / JoystickDelta rotation, and PC / Console / Mobile input via the Unity Input System.",
   "author": {
     "name": "Emre Emiroglu",
     "email": "emirogluemre08@gmail.com",
@@ -11,9 +11,7 @@
   "keywords": [
     "character-controller",
     "top-down",
-    "input-system",
-    "mvmc",
-    "unity"
+    "input-system"
   ],
   "repository": {
     "type": "git",
